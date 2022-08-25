@@ -1,0 +1,39 @@
+@import '~/styles/var';
+
+.icon-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  align-self: flex-end;
+
+  width: 180px;
+  height: 50px;
+  padding: 0 .5rem;
+
+  background: $orange;
+  border: 0;
+  border-radius: 5px;
+
+  color: $white;
+  font-size: 1.2rem;
+  font-weight: 300;
+  svg {
+    path {
+      fill: $white;
+    }
+  }
+
+  &.floating {
+    position: sticky;
+  }
+
+  &.rounded {
+    border-radius: 100rem;
+  }
+
+  &.center {
+    justify-content: center;
+    align-items: center;
+  }
+}
