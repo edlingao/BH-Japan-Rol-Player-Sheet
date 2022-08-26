@@ -1,7 +1,12 @@
 @import './var';
 @import './reset';
 
+body {
+  overflow: hidden;
+}
+
 main.main {
-  height: 100vh;
+  height: 92vh;
+  overflow: auto;
   padding: .5rem;
 }

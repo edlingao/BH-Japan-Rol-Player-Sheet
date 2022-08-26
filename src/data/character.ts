@@ -22,11 +22,8 @@ export const [player, setPlayerStats] = createStore(initialPlayer);
 export const getDamage = (damage: number) => 
   setPlayerStats('currentDamage', (player.currentDamage + damage));
 
-
 export const heal = (healPoints: number) => 
   setPlayerStats('currentDamage', (player.currentDamage - healPoints));
-
-
 
 export const editPlayer = (player: Player) => setPlayerStats(player);
 
