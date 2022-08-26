@@ -1,6 +1,6 @@
 import { Link, useLocation, } from "@solidjs/router";
 import { createEffect, createMemo, For } from "solid-js";
-import { menuItems } from "~/assets/menu-items";
+import { menuItems } from "~/assets/constants/menu-items";
 import { IconElement } from "./icon";
 
 import './_nav.scss';
