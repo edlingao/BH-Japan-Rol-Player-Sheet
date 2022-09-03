@@ -6,10 +6,15 @@ import { showModal } from '../data/create-modal-show';
 import Add from '~/assets/icons/add_small.svg'
 import { LabelInput } from '../components/label-input/index';
 import { createEffect, createSignal } from 'solid-js';
+import { Slider } from "~/components/slider/slider";
+
 export default function Home() {
 
   const [value, setValue] = createSignal("");
 
+  const handleChangeFromSlider = (value: number) => {
+    console.log('Slider ', value);
+  }
   createEffect(() => {
     console.log(value());
   })
@@ -28,6 +33,7 @@ export default function Home() {
         placeholder="Nombre"
         onKeyUp={(value: string) => setValue(value)}
       />
+      <Slider onChange={handleChangeFromSlider}/>
       <CreateModal type="armor"/>
     </main>
   );
