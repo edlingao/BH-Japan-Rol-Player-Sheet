@@ -22,7 +22,11 @@ export function CreateSolidComponentFile(myArgs) {
   })
     .then(() => {
 
-      const content = `export function ${capitalize(fileName)}() {
+      const content = `
+
+import './${fileName}.scss';
+
+export function ${capitalize(fileName)}() {
   return (
     <div>
       <h1>${fileName}</h1>

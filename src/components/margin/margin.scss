@@ -1,0 +1,12 @@
+.margin {
+  width: 100%;
+  &.small {
+    height: 5px;
+  }
+  &.medium {
+    height: 15px;
+  }
+  &.large {
+    height: 25px;
+  }
+}
