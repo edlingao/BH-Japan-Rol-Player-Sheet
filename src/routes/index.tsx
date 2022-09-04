@@ -12,7 +12,7 @@ import { Stat } from "~/components/stat/stat";
 export default function Home() {
 
   const [value, setValue] = createSignal("");
-
+  const [counter, setCounter] = createSignal(0)
   const handleChangeFromSlider = (value: number) => {
     console.log('Slider ', value);
   }
@@ -34,8 +34,8 @@ export default function Home() {
         placeholder="Nombre"
         onKeyUp={(value: string) => setValue(value)}
       />
-      <Slider onChange={handleChangeFromSlider}/>
-      <Stat name="STR" value={20}/>
+      <Slider onChange={setCounter} startCount={counter()}/>
+      <Stat name="STR" value={counter()}/>
       <CreateModal type="armor"/>
     </main>
   );

@@ -21,7 +21,6 @@ export function Slider({startCount = 0, onChange}: Props) {
 
   const add = (value: number) => {
     const newValue: number = count() + value;
-    console.table({value, newValue})
     setCount(
       newValue <= 100 && newValue >= 0 ?
         newValue :
