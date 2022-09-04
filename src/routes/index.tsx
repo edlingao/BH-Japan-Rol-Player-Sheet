@@ -7,6 +7,7 @@ import Add from '~/assets/icons/add_small.svg'
 import { LabelInput } from '../components/label-input/index';
 import { createEffect, createSignal } from 'solid-js';
 import { Slider } from "~/components/slider/slider";
+import { Stat } from "~/components/stat/stat";
 
 export default function Home() {
 
@@ -34,6 +35,7 @@ export default function Home() {
         onKeyUp={(value: string) => setValue(value)}
       />
       <Slider onChange={handleChangeFromSlider}/>
+      <Stat name="STR" value={20}/>
       <CreateModal type="armor"/>
     </main>
   );

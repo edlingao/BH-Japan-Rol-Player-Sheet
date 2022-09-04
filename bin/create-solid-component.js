@@ -22,9 +22,7 @@ export function CreateSolidComponentFile(myArgs) {
   })
     .then(() => {
 
-      const content = `
-
-import './${fileName}.scss';
+      const content = `import './${fileName}.scss';
 
 export function ${capitalize(fileName)}() {
   return (
@@ -32,7 +30,8 @@ export function ${capitalize(fileName)}() {
       <h1>${fileName}</h1>
     </div>
   );
-}`;
+}
+`;
 
       fs.writeFile(`${createdPath}/${fileName}.tsx`, content, err => {
         if (err) {

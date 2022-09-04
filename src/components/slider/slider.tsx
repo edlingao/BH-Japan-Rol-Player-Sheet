@@ -58,7 +58,7 @@ export function Slider({startCount = 0, onChange}: Props) {
         <div class="add-icon" onClick={() => add(-1)}>
           <Subs />
         </div>
-        <p class='roboto'>{count()}</p>
+        <p class='roboto count'>{count()}</p>
         <div class="add-icon" onClick={() => add(1)}>
           <Add />
         </div>
