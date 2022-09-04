@@ -1,0 +1,28 @@
+@import '~/styles/var';
+
+.stat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100px;
+
+  &-name {
+    color: $dark;
+    font-weight: 600;
+  }
+
+  &-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    
+    border-radius: 10px;
+    background: $menu-background;
+    color: $white;
+    font-size: 64px;
+    font-weight: 100;
+  }
+}

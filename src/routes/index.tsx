@@ -7,11 +7,12 @@ import Add from '~/assets/icons/add_small.svg'
 import { LabelInput } from '../components/label-input/index';
 import { createEffect, createSignal } from 'solid-js';
 import { Slider } from "~/components/slider/slider";
+import { Stat } from "~/components/stat/stat";
 
 export default function Home() {
 
   const [value, setValue] = createSignal("");
-
+  const [counter, setCounter] = createSignal(0)
   const handleChangeFromSlider = (value: number) => {
     console.log('Slider ', value);
   }
@@ -33,7 +34,8 @@ export default function Home() {
         placeholder="Nombre"
         onKeyUp={(value: string) => setValue(value)}
       />
-      <Slider onChange={handleChangeFromSlider}/>
+      <Slider onChange={setCounter} startCount={counter()}/>
+      <Stat name="STR" value={counter()}/>
       <CreateModal type="armor"/>
     </main>
   );
