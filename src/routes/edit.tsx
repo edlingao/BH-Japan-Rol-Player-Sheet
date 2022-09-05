@@ -5,36 +5,51 @@ import { IconButton } from "~/components/icon-button";
 import Save from '~/assets/icons/save_small.svg';
 import { For } from "solid-js";
 import { inputObj } from '../assets/constants/InputObjects';
+import { Stat } from "~/components/stat/stat";
+import { Slider } from "~/components/slider/slider";
+import { Margin } from "~/components/margin/margin";
+import { setStat } from '../data/character';
 
 
 export default function Edit() {
   let playerData =  [];
+  const numericStats = [];
+  const stringStats = [];
   Object.keys(player).forEach((key) => {
     const stadisticInfo = inputObj[key];
-    
+
     if (stadisticInfo) {
       playerData.push(stadisticInfo);
+    } else if (key != 'currentDamage') {
+      numericStats.push(key);
     }
   });
-  console.log(playerData);
 
   return(
-    <main className="main">
+    <main class="main">
       <Title>Editar</Title>
-      <form className="edit-pj">
+      <form class="edit-pj">
 
-        <For each={playerData}>{({title, placeholder}) =>
+        <For each={playerData}>{({title, placeholder, key}) =>
           <LabelInput
             name="name"
             title={title}
             type="text"
             placeholder={placeholder}
+            value={player[key]}
+            onChange={(value: string ) => setStat(key, value)}
           />
         }
         </For>
-        <IconButton title="Guardar">
-          <Save />
-        </IconButton>
+        <For each={numericStats} >{(numericStat) =>
+          <>
+            <div class="flex-container">
+              <Stat name={numericStat.toUpperCase()} value={player[numericStat]}/>
+              <Slider startCount={player[numericStat]} onChange={(value: number) => setStat(numericStat, value)}/>
+            </div>
+            <Margin large />
+          </>
+        }</For>
       </form>
     </main>
   )

@@ -6,6 +6,8 @@ interface Props extends PropsWithChildren{
   onClick?: () => void;
   floating?: boolean;
   rounded?: boolean;
+  left?: boolean;
+  right?: boolean;
   title: string;
   center: boolean;
 }
@@ -15,8 +17,10 @@ export function IconButton(props: Props) {
     title,
     floating,
     rounded,
-    onClick,
+    left,
+    right,
     center,
+    onClick,
   } = props;
 
   const IconChild = children(() => props.children)
@@ -32,6 +36,7 @@ export function IconButton(props: Props) {
         rounded: rounded != null,
         floating: floating != null,
         center: center != null,
+        right: right != null
       }}
       class="icon-button"
     >

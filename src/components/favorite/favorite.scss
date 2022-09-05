@@ -1,0 +1,11 @@
+@import '~/styles/var';
+
+.star path {
+  fill: $white;
+  transition: all .25s;
+}
+
+.star-empty path {
+  fill: $menu-background;
+  transition: all .25s;
+}

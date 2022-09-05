@@ -4,20 +4,13 @@ import { useLocation } from '@solidjs/router';
 import Back from '~/assets/icons/arrow_small.svg';
 import Add from '~/assets/icons/add.svg';
 import Save from '~/assets/icons/save_small.svg';
-import { Item, Spell, Armor } from '../../types/item';
+import { Item, Spell, Armor, ItemType } from '../../types/item';
 
 import './_modal.scss';
 import { IconButton } from '../icon-button';
 
-
-enum Type {
-  Inventory = "inventory",
-  Spell = "spell",
-  Armor = "armor",
-}
-
 interface Props {
-  type: Type;
+  type: ItemType;
   onCancel: () => void;
   onSubmit: (item: Item | Spell | Armor) => void;
 }
@@ -59,16 +52,16 @@ export function CreateModal({type, onCancel, onSubmit}: Props) {
           <input type={type} name="name" />
         </label>
         <Show
-          when={type === "spell"  || type === "armor"}
+          when={type === ItemType.Spellbook || type === ItemType.Armor}
           fallback={
             <label>
-              <h2>{type}</h2>
+              <h1>Cantidad</h1>
               <input type="number" name={type} />
             </label>
           }
         >
           <label>
-            <h1>{type === 'armor' ? 'AV o Dado' : 'Descripcion'}</h1>
+            <h1>{type === ItemType.Armor ? 'AV o Dado' : 'Descripcion'}</h1>
             <input type="text" name={type} />
           </label>
         </Show>
