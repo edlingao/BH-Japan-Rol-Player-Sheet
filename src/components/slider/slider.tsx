@@ -46,9 +46,15 @@ export function Slider({startCount = 0, onChange}: Props) {
           }}
           value={count()}
           onChange={handleChange}
+          
           onPointerDown={handleDown}
+          onTouchStart={handleDown}
+          
           onPointerUp={handleUp}
+          onTouchEnd={handleUp}
+
           onPointerMove={handleChange}
+          onTouchMove={handleChange}
         />
         <div class="range-background"></div>
       </div>

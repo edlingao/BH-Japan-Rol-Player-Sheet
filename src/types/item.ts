@@ -1,7 +1,15 @@
+
+export enum ItemType {
+  "Armor" = "armor";
+  "Inventory" = "inventory";
+  "Spellbook" = "spellbook";
+}
+
 export interface Item {
+  id: string;
   name: string;
   quantity?: number;
-  favorite: boolean;
+  favorite?: boolean;
 };
 
 export interface Armor extends Item {
@@ -12,14 +20,8 @@ export interface Spell extends Item {
   information: string;
 };
 
-export interface Inventory {
-  items: Item[];
-};
+export type Inventory = Item[];
 
-export interface SpellBook {
-  spells: Spell[];
-};
+export type SpellBook = Spell[];
 
-export interface ArmorInfo {
-  armors: Armor[];
-};
+export type ArmorInfo = Armor[];

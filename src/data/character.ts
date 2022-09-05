@@ -27,4 +27,4 @@ export const heal = (healPoints: number) =>
 
 export const editPlayer = (player: Player) => setPlayerStats(player);
 
-export const addStat = (stat, newValue) => setPlayerStats(stat, newValue);
+export const setStat = (stat, newValue) => setPlayerStats(stat, newValue);

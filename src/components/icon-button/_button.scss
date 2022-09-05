@@ -25,7 +25,9 @@
   }
 
   &.floating {
-    position: sticky;
+    position: fixed;
+    bottom: 6rem;
+    right: 1rem;
   }
 
   &.rounded {
@@ -35,5 +37,9 @@
   &.center {
     justify-content: center;
     align-items: center;
+  }
+
+  &.right {
+    margin-left: auto;
   }
 }

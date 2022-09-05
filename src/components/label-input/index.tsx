@@ -4,6 +4,7 @@ import './_label.scss';
 
 interface Props {
   title: string;
+  value: string | number;
   type:  string;
   name: string;
   placeholder?: string;
@@ -18,13 +19,14 @@ export function LabelInput({
   type, 
   name,
   title,
+  value,
   onChange,
   onKeyDown,
   onKeyPress,
   onKeyUp,
 }: Props) {
 
-  const [inputValue, setInputValue] = createSignal(type === "number" ? 0 : "");  
+  const [inputValue, setInputValue] = createSignal(value);  
 
   const change = (event: InputEvent) => {
     const { value } = event.target;

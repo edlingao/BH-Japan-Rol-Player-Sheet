@@ -9,4 +9,5 @@ export interface InputObj {
 export interface Input {
   title: string;
   placeholder: string;
+  key: string;
 }
