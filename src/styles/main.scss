@@ -46,3 +46,12 @@ main.main {
     width: 60%;
   }
 }
+
+
+.center-container {
+  .buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

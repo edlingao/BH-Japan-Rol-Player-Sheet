@@ -8,6 +8,7 @@ import { Item, Spell, Armor, ItemType } from '../../types/item';
 
 import './_modal.scss';
 import { IconButton } from '../icon-button';
+import { v4 as uuidv4 } from 'uuid';
 
 interface Props {
   type: ItemType;
@@ -29,10 +30,15 @@ export function CreateModal({type, onCancel, onSubmit}: Props) {
 
   const submit = (e: SubmitEvent) => {
     e.preventDefault();
-    const newItem: Item | Spell | Armor = Object.fromEntries(new FormData(e.target));
-
+    const {name, quantity} = Object.fromEntries(new FormData(e.target));
+    const newItem: Item | Spell | Armor = {
+      id: uuidv4(),
+      name,
+      quantity,
+      favorite: false,
+    }
     hideModal();
-    onSubmit?.()
+    onSubmit?.(newItem)
   }
 
   return(
@@ -56,13 +62,13 @@ export function CreateModal({type, onCancel, onSubmit}: Props) {
           fallback={
             <label>
               <h1>Cantidad</h1>
-              <input type="number" name={type} />
+              <input type="number" name='quantity' />
             </label>
           }
         >
           <label>
             <h1>{type === ItemType.Armor ? 'AV o Dado' : 'Descripcion'}</h1>
-            <input type="text" name={type} />
+            <input type="text" name='quantity' />
           </label>
         </Show>
 

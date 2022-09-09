@@ -19,54 +19,6 @@ const initialArmorInfo: ArmorInfo = [
     quantity: "2d6",
     favorite: true
   },
-  {
-    id: uuidv4(),
-    name: "Madera",
-    quantity: "2d6",
-    favorite: true
-  },
-  {
-    id: uuidv4(),
-    name: "Papel",
-    quantity: "2d6",
-    favorite: true
-  },
-  {
-    id: uuidv4(),
-    name: "Piel",
-    quantity: "2d6",
-    favorite: true
-  },
-  {
-    id: uuidv4(),
-    name: "Madera",
-    quantity: "2d6",
-    favorite: true
-  },
-  {
-    id: uuidv4(),
-    name: "Papel",
-    quantity: "2d6",
-    favorite: true
-  },
-  {
-    id: uuidv4(),
-    name: "Piel",
-    quantity: "2d6",
-    favorite: true
-  },
-  {
-    id: uuidv4(),
-    name: "Madera",
-    quantity: "2d6",
-    favorite: true
-  },
-  {
-    id: uuidv4(),
-    name: "PapelUltimo",
-    quantity: "2d6",
-    favorite: true
-  }
 ]
 
 
@@ -85,7 +37,7 @@ const initialSpellbook: SpellBook = [
   }
 ]
 
-const [items, setItem] = createStore({
+export const [items, setItem] = createStore({
   inventory: initialInventory,
   armor: initialArmorInfo,
   spellbook: initialSpellbook,

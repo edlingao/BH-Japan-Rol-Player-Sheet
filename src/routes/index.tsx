@@ -15,19 +15,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { Margin } from "~/components/margin/margin";
 
 import Add from '~/assets/icons/add_small.svg';
+import { Item, Spell, Armor } from '../types/item';
 
 export default function Home() {
 
-  const [value, setValue] = createSignal("");
-  const [counter, setCounter] = createSignal(0);
 
-  const handleChangeFromSlider = (value: number) => {
-    console.log('Slider ', value);
-  }
-
-  createEffect(() => {
-    console.log(value());
-  })
 
   return (
     <main class="main">
@@ -38,7 +30,7 @@ export default function Home() {
       <IconButton title="Agregar" right center onClick={showModal}>
         <Add />
       </IconButton>
-      <CreateModal type="armor"/>
+      <CreateModal type="armor" onSubmit={(item: Item | Spell | Armor) => addItem(ItemType.Armor, item)}/>
     </main>
   );
 }

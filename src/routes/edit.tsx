@@ -17,11 +17,11 @@ export default function Edit() {
   const stringStats = [];
   Object.keys(player).forEach((key) => {
     const stadisticInfo = inputObj[key];
-
     if (stadisticInfo) {
       playerData.push(stadisticInfo);
-    } else if (key != 'currentDamage') {
+    } else if (key != 'currentDamage' && key != '_id' && key != '__v' && key != 'date' && key != 'armor' && key != 'inventory' && key != 'spellbook' && key != 'password') {
       numericStats.push(key);
+      console.log(key, player[key]);
     }
   });
 
