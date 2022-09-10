@@ -7,6 +7,8 @@ import { showModal } from '../data/create-modal-show';
 import { IconButton } from '../components/icon-button/index';
 import Add from '~/assets/icons/add_small.svg';
 import { Margin } from "~/components/margin/margin";
+import { Spell } from '../types/item';
+import { addItem } from '../data/item';
 
 export default function Spellbook() {
 
@@ -18,7 +20,7 @@ export default function Spellbook() {
       <IconButton title="Agregar" floating rounded center onClick={showModal}>
         <Add />
       </IconButton>
-      <CreateModal type={ItemType.Spellbook} />
+      <CreateModal type={ItemType.Spellbook} onSubmit={(item: Spell) => addItem(ItemType.Spellbook, item)}/>
     </main>
   )
 }

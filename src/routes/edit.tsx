@@ -21,7 +21,6 @@ export default function Edit() {
       playerData.push(stadisticInfo);
     } else if (key != 'currentDamage' && key != '_id' && key != '__v' && key != 'date' && key != 'armor' && key != 'inventory' && key != 'spellbook' && key != 'password') {
       numericStats.push(key);
-      console.log(key, player[key]);
     }
   });
 

@@ -55,3 +55,30 @@ main.main {
     align-items: center;
   }
 }
+
+.numeric-stat {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.damage-heal-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  button {
+    width: 180px;
+    height: 90px;
+    border: 0;
+    color: $white;
+    font-size: 40px;
+    border-radius: 10px;
+    user-select: none;
+    &.heal {
+      background-color: $green;
+    }
+    &.damage {
+      background-color: $red;
+    }
+  }
+}

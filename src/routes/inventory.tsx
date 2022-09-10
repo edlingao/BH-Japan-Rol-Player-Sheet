@@ -8,6 +8,8 @@ import { showModal } from '../data/create-modal-show';
 import { IconButton } from '../components/icon-button/index';
 import Add from '~/assets/icons/add_small.svg';
 import { Margin } from '~/components/margin/margin';
+import { Item } from '../types/item';
+import { addItem } from '../data/item';
 
 
 export default function Edit() {
@@ -21,7 +23,7 @@ export default function Edit() {
       <IconButton title="Agregar" floating rounded center onClick={showModal}>
         <Add />
       </IconButton>
-      <CreateModal type={ItemType.Inventory} />
+      <CreateModal type={ItemType.Inventory} onSubmit={(item: Item) => addItem(ItemType.Inventory, item)}/>
     </main>
   )
 }

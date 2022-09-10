@@ -16,15 +16,44 @@ import { Margin } from "~/components/margin/margin";
 
 import Add from '~/assets/icons/add_small.svg';
 import { Item, Spell, Armor } from '../types/item';
+import { inputObj } from '../assets/constants/InputObjects';
+import { GeneralStatViewer } from "~/components/general-stat-viewer/generalStatViewer";
+import { setStat } from '../data/character';
 
 export default function Home() {
+  const playerData = [];
+  const numericStats = [];
 
+  Object.keys(player).forEach((key) => {
+    const stadisticInfo = inputObj[key];
+    if (stadisticInfo) {
+      playerData.push(stadisticInfo);
+    } else if (key != 'hp' && key != 'currentDamage' && key != '_id' && key != '__v' && key != 'date' && key != 'armor' && key != 'inventory' && key != 'spellbook' && key != 'password') {
+      numericStats.push(key);
+    }
+  });
 
+  const setDamage = (value: number) => 
+    setStat('currentDamage', (player.currentDamage + value) <= 0 ? 0 : player.currentDamage + value);
 
   return (
     <main class="main">
       <Title>Home</Title>
       <h1 class="main-title">{player.name}</h1>
+      <Margin large />
+      <GeneralStatViewer />
+      <Margin large />
+      <div class="damage-heal-buttons">
+        <button class="damage" onClick={() => setDamage(+1)}>Damage</button>
+        <button class="heal" onClick={() => setDamage(-1)}>Heal</button>
+      </div>
+      <Margin large />
+      <div class="numeric-stat">
+        <For each={numericStats} >{(numericStat) =>
+          <Stat name={numericStat.toUpperCase()} value={player[numericStat]}/>
+        }</For>
+      </div>
+      <Margin large />
       <Table source={items.armor} type={ItemType.Armor} />
       <Margin small />
       <IconButton title="Agregar" right center onClick={showModal}>

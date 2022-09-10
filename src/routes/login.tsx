@@ -4,7 +4,7 @@ import { LabelInput } from "~/components/label-input";
 import { Margin } from "~/components/margin/margin";
 import { login, session, setSession } from '../data/session';
 import { register, loginRoute } from '../endpoints/index';
-import { createSignal, createEffect } from 'solid-js';
+import { createSignal, createEffect, onMount } from 'solid-js';
 import fetchHeader from "~/lib/fetchHeaders";
 import axios, { AxiosResponse } from "axios";
 import { setPlayerStats } from "~/data/character";
@@ -16,20 +16,23 @@ export default function Login() {
   const [username, setUsername] = createSignal('');
   const [pswd, setPswd] = createSignal('');
 
+  const setStoreEvent = ({data}: AxiosResponse) => {
+    const player: Player = data.at(-1) as Player;
+    setPlayerStats(player);
+    setItem('armor', data.at(-1).armor);
+    setItem('spellbook', data.at(-1).spellbook);
+    setItem('inventory', data.at(-1).inventory);
+    setSession(data.at(-1)._id);
+
+    localStorage.setItem('session', data.at(-1)._id);
+  };
+
   const loginEvent = (e: MouseEvent) => {
     axios.post(loginRoute, {
       username: username(),
       password: pswd(),
     })
-      .then(({data}: AxiosResponse) => {
-        const player: Player = data.at(-1) as Player;
-        console.log(data.at(-1))
-        setPlayerStats(player);
-        setItem('armor', data.at(-1).armor);
-        setItem('spellbook', data.at(-1).spellbook);
-        setItem('inventory', data.at(-1).inventory);
-        setSession(data.at(-1)._id);
-      })
+      .then(setStoreEvent)
       .catch(err => console.error(err));
   };
 
@@ -38,13 +41,9 @@ export default function Login() {
       username: username(),
       password: pswd(),
     })
-      .then(data => {
-        console.log(data)
-      })
+      .then(setStoreEvent)
       .catch(err => console.error(err));
   };
-
-  createEffect(() => console.log({username: username(), pswd: pswd()}));
 
   return (
     <main class="main">

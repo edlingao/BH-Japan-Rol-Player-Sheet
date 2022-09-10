@@ -34,11 +34,6 @@ export function _auxSlider() {
         )) * -1;
         setThumbPosition('x', x);
         setThumbPosition('y', secondResultAux);
-        console.log({
-          x: thumbPosition.x,
-          y: thumbPosition.y,
-          calculatedY: secondResultAux
-        })
       }
     }
   }

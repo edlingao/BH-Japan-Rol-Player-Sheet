@@ -4,11 +4,13 @@ import { For, children, Switch, Match, Show, createSignal } from 'solid-js';
 import { Inventory, ArmorInfo, SpellBook, ItemType, Item, Spell, Armor } from '../../types/item';
 import { Favorite } from '../favorite/favorite';
 import { Margin } from '../margin/margin';
-import { editItem, changeItemOrderBasedOnFavorite } from '../../data/item';
+import { editItem, changeItemOrderBasedOnFavorite, editMultipleItemProperties } from '../../data/item';
 import Add from '~/assets/icons/add_small.svg';
 import Subs from '~/assets/icons/substract_small.svg';
 import Help from '~/assets/icons/help.svg';
 import items from '~/data/item';
+import { setEditingMode, setItemID, setPrimaryValue, setSecondaryValue, setShowModal } from '~/data/create-modal-show';
+import { showModal, enableEditMode } from '../../data/create-modal-show';
 
 type Props = {
   source: Inventory | ArmorInfo | SpellBook;
@@ -48,19 +50,30 @@ function SpellbookDescription({description}: {description: string}) {
 function NormalTable({type, item}: NormalTableProps) {
 
   const changeFavoriteState = (id: string, oldValue: boolean) => {
-    editItem(type, id, 'favorite', !oldValue); 
-    changeItemOrderBasedOnFavorite(type);
+    editMultipleItemProperties(type, id, ['favorite'], [!oldValue])
+      .then(() => changeItemOrderBasedOnFavorite(type));
   }
 
   const addCounter = (count: number, add: number, id: string) => 
-    editItem(type, id, 'quantity', count + add);
+    editItem(type, id, 'quantity', parseInt(count) + add);
 
   const [showInfo, setShowInfo] = createSignal(false)
+
+  const openModalOnEditMode = () => {
+    setPrimaryValue(item.name);
+    setSecondaryValue(item.quantity);
+    setItemID(item.id);
+    enableEditMode()
+    if(type === ItemType.Spellbook) {
+      setSecondaryValue(item.information);
+    }
+    showModal();
+  }
 
   return (
     <>
       <div class="item-info">
-        <div class="item-name">
+        <div class="item-name" onClick={openModalOnEditMode}>
           <p>{item.name}</p>
         </div>
         <div
