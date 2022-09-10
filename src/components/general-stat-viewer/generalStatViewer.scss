@@ -30,7 +30,6 @@
   width: 30%;
   height: 40px;
   border-radius: 10rem;
-  overflow: hidden;
   background-image: linear-gradient($green, $green);
   background-repeat: no-repeat;
   
@@ -50,5 +49,6 @@
     left: 0;
     z-index: -1;
     background-color: $red;
+    border-radius: 10rem;
   }
 }

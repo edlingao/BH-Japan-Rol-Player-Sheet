@@ -49,7 +49,7 @@ export function LabelInput({
   }
 
   return (
-    <label class='label-input'>
+    <label class='label-input disable-dbl-tap-zoom'>
       <p class='title'>{title}</p>
       <input
         class='input'

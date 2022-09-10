@@ -44,8 +44,8 @@ export default function Home() {
       <GeneralStatViewer />
       <Margin large />
       <div class="damage-heal-buttons">
-        <button class="damage" onClick={() => setDamage(+1)}>Damage</button>
-        <button class="heal" onClick={() => setDamage(-1)}>Heal</button>
+        <button class="damage disable-dbl-tap-zoom" onClick={() => setDamage(+1)}>Damage</button>
+        <button class="heal disable-dbl-tap-zoom" onClick={() => setDamage(-1)}>Heal</button>
       </div>
       <Margin large />
       <div class="numeric-stat">
