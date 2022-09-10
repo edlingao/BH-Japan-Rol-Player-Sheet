@@ -30,10 +30,12 @@ export default function Root() {
             <Show when={logged()} fallback={
               <Login />
             }>
-              <Routes>
-                <FileRoutes />
-              </Routes>
-              <NavMenu />
+              <div class="scroll">
+                <Routes>
+                  <FileRoutes />
+                </Routes>
+                <NavMenu />
+              </div>
             </Show>
           </ErrorBoundary>
         </Suspense>

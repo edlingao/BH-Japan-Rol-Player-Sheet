@@ -4,15 +4,13 @@
 
 
 body {
-  overflow-x: hidden;
+  overflow: hidden;
   &::-webkit-scrollbar {
     display: none;
   }
 }
 
 main.main {
-  height: calc(100vh + 5rem);
-  overflow: auto;
   padding: .5rem;
 }
 
@@ -85,4 +83,10 @@ main.main {
 
 .disable-dbl-tap-zoom {
   touch-action: manipulation;
+}
+
+.scroll {
+  overflow: auto;
+  position: relative;
+  height: 100vh;
 }
