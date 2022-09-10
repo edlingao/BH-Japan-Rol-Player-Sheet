@@ -10,16 +10,21 @@ import Add from '~/assets/icons/add_small.svg';
 import { Margin } from '~/components/margin/margin';
 import { Item } from '../types/item';
 import { addItem } from '../data/item';
+import { Show } from 'solid-js';
+import { EmptyMessage } from '~/components/empty-message/emptyMessage';
 
 
-export default function Edit() {
-
+export default function Inventory() {
+  console.log(items.inventory.length)
   return (
     <main class="main">
       <Title>Inventory</Title>
       <h1 class='main-title'>Inventario</h1>
-
-      <Table source={items.inventory} type={ItemType.Inventory}/>
+      <Show when={items.inventory.length}
+        fallback={<EmptyMessage />}
+      >
+        <Table source={items.inventory} type={ItemType.Inventory}/>
+      </Show>
       <IconButton title="Agregar" floating rounded center onClick={showModal}>
         <Add />
       </IconButton>

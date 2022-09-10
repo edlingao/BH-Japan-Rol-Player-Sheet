@@ -1,0 +1,10 @@
+.empty {
+  width: 100%;
+  height: calc(100vh - 9.5rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    font-weight: 300;
+  }
+}
