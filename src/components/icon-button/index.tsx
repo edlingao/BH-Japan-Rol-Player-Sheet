@@ -10,6 +10,7 @@ interface Props extends PropsWithChildren{
   right?: boolean;
   title: string;
   center: boolean;
+  background?: string;
 }
 
 export function IconButton(props: Props) {
@@ -21,6 +22,7 @@ export function IconButton(props: Props) {
     right,
     center,
     onClick,
+    background,
   } = props;
 
   const IconChild = children(() => props.children)
@@ -32,6 +34,9 @@ export function IconButton(props: Props) {
   return (
     <button
       onClick={click}
+      style={{
+        background: background != null ? background : ''
+      }}
       classList={{
         rounded: rounded != null,
         floating: floating != null,

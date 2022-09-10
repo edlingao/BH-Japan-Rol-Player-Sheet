@@ -1,5 +1,10 @@
 import { createStore } from 'solid-js/store';
 import { Player } from '../types/player';
+import axios, { AxiosResponse } from 'axios';
+import { session } from './session';
+import toastr from 'toastr';
+import { editItem } from './item';
+import { editStatRoute } from '../endpoints/index';
 
 const initialPlayer: Player = {
     name: 'Jhon Doe Caster Large',
@@ -27,4 +32,13 @@ export const heal = (healPoints: number) =>
 
 export const editPlayer = (player: Player) => setPlayerStats(player);
 
-export const setStat = (stat, newValue) => setPlayerStats(stat, newValue);
+export const setStat = (stat, newValue) => {
+  axios.post(editStatRoute, {
+    type: stat,
+    newValue,
+    token: session(),
+  })
+  .then(({data}: AxiosResponse) => setPlayerStats(stat, data.newValue))
+  .catch(err => toastr.error(JSON.stringify(err)))
+  setPlayerStats(stat, newValue);
+}

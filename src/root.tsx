@@ -1,5 +1,5 @@
 // @refresh reload
-import { Suspense } from "solid-js";
+import { Show, Suspense } from "solid-js";
 import { NavMenu } from './components/nav-menu/index';
 import {
   Body,
@@ -13,22 +13,28 @@ import {
   Title,
 } from "solid-start";
 import '~/styles/main.scss';
+import { logged } from './data/session';
+import Login from "./routes/login";
 
 export default function Root() {
   return (
     <Html lang="en">
       <Head>
-        <Title>SolidStart - Bare</Title>
+        <Title>Player Sheet</Title>
         <Meta charset="utf-8" />
         <Meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Body>
         <Suspense>
           <ErrorBoundary>
-            <Routes>
-              <FileRoutes />
-            </Routes>
-            <NavMenu />
+            <Show when={logged()} fallback={
+              <Login />
+            }>
+              <Routes>
+                <FileRoutes />
+              </Routes>
+              <NavMenu />
+            </Show>
           </ErrorBoundary>
         </Suspense>
         <Scripts />
