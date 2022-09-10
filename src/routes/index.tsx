@@ -19,6 +19,7 @@ import { Item, Spell, Armor } from '../types/item';
 import { inputObj } from '../assets/constants/InputObjects';
 import { GeneralStatViewer } from "~/components/general-stat-viewer/generalStatViewer";
 import { setStat } from '../data/character';
+import { loggout } from '../data/session';
 
 export default function Home() {
   const playerData = [];
@@ -39,7 +40,7 @@ export default function Home() {
   return (
     <main class="main">
       <Title>Home</Title>
-      <h1 class="main-title">{player.name}</h1>
+      <h1 class="main-title disable-dbl-tap-zoom" onClick={loggout}>{player.name}</h1>
       <Margin large />
       <GeneralStatViewer />
       <Margin large />

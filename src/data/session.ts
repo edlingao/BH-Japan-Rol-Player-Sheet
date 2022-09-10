@@ -13,6 +13,10 @@ export const logged = () => session() != null;
 export const login = (session: string) => 
   setSession(session);
 
+export const loggout = () => {
+  setSession(null);
+  localStorage.removeItem('session');
+}
 
 onMount(() => {
   if(localStorage.getItem('session') != null) {
