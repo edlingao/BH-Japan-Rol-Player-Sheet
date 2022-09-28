@@ -12,7 +12,7 @@ body {
 
 main.main {
   padding: .5rem;
-  min-height: calc(100vh - 5rem);
+  // min-height: calc(100vh - 5rem);
 }
 
 .roboto {
@@ -89,5 +89,5 @@ main.main {
 .scroll {
   overflow: auto;
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 10rem);
 }

@@ -2,7 +2,7 @@ import { Title } from "solid-start";
 import { IconButton } from "~/components/icon-button";
 import { LabelInput } from "~/components/label-input";
 import { Margin } from "~/components/margin/margin";
-import { login, session, setSession } from '../data/session';
+import { login, session, setSession, logged } from '../data/session';
 import { register, loginRoute } from '../endpoints/index';
 import { createSignal, createEffect, onMount } from 'solid-js';
 import fetchHeader from "~/lib/fetchHeaders";
@@ -10,6 +10,7 @@ import axios, { AxiosResponse } from "axios";
 import { setPlayerStats } from "~/data/character";
 import { Player } from '../types/player';
 import { setItem } from "~/data/item";
+import toastr from "toastr";
 
 export default function Login() {
 
@@ -17,14 +18,14 @@ export default function Login() {
   const [pswd, setPswd] = createSignal('');
 
   const setStoreEvent = ({data}: AxiosResponse) => {
-    const player: Player = data.at(-1) as Player;
+    const player: Player = data[data.length - 1] as Player;
     setPlayerStats(player);
-    setItem('armor', data.at(-1).armor);
-    setItem('spellbook', data.at(-1).spellbook);
-    setItem('inventory', data.at(-1).inventory);
-    setSession(data.at(-1)._id);
+    setItem('armor', player.armor);
+    setItem('spellbook', player.spellbook);
+    setItem('inventory', player.inventory);
+    setSession(data[data.length -1]._id);
 
-    localStorage.setItem('session', data.at(-1)._id);
+    localStorage.setItem('session', data[data.length -1]._id);
   };
 
   const loginEvent = (e: MouseEvent) => {
@@ -33,7 +34,7 @@ export default function Login() {
       password: pswd(),
     })
       .then(setStoreEvent)
-      .catch(err => console.error(err));
+      .catch(err => toastr.error(err));
   };
 
   const registerEvent = (e: MouseEvent) => {
