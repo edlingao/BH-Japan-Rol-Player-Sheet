@@ -1,4 +1,4 @@
-export const baseURL = `${import.meta.env.VITE_API_DEV}`;
+export const baseURL = `${import.meta.env.VITE_DEV == 'true' ? import.meta.env.VITE_API_DEV : import.meta.env.VITE_API_PROD}`;
 
 export const register = `${baseURL}/register`;
 export const loginRoute = `${baseURL}/login`;
